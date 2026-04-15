@@ -40,7 +40,7 @@ Provide your analysis in Markdown format using bullet points, bold text for key 
 
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4-turbo-preview",  # Using a highly capable model for text summary
+                model="gpt-3.5-turbo",  # Using a highly accessible model
                 messages=[
                     {"role": "system", "content": "You are a trend analyst expert for YouTube creators."},
                     {"role": "user", "content": prompt}
