@@ -10,8 +10,15 @@ st.write("Find outperforming YouTube videos leveraging the Outlier Score (Views 
 
 # Sidebar Configuration
 st.sidebar.header("Configuration")
-yt_api_key = st.sidebar.text_input("YouTube Data v3 API Key", type="password")
-openai_api_key = st.sidebar.text_input("OpenAI API Key", type="password")
+
+# Try to load keys securely from Streamlit secrets, otherwise show the text input boxes
+yt_api_key = st.secrets.get("YOUTUBE_API_KEY", "") if "YOUTUBE_API_KEY" in st.secrets else ""
+if not yt_api_key:
+    yt_api_key = st.sidebar.text_input("YouTube Data v3 API Key (or set in secrets)", type="password")
+
+openai_api_key = st.secrets.get("OPENAI_API_KEY", "") if "OPENAI_API_KEY" in st.secrets else ""
+if not openai_api_key:
+    openai_api_key = st.sidebar.text_input("OpenAI API Key (or set in secrets)", type="password")
 
 st.sidebar.markdown("---")
 st.sidebar.header("Search Parameters")
